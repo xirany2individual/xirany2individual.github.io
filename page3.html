@@ -45,10 +45,15 @@
 
     //Read the data
     d3.csv("https://raw.githubusercontent.com/xirany2individual/xirany2individual.github.io/master/data/updated-gender-wage-gap-vs-gdp-per-capita.csv", function(data) {
-
+        var tooltip = d3.select("body")
+              .append("div")
+              .style("position", "absolute")
+              .style("z-index", "10")
+              .style("visibility", "hidden")
+              .text("a simple tooltip");
       // Add X axis
       var x = d3.scaleLinear()
-        .domain([5000, 70000])
+        .domain([3000, 70000])
         .range([ 0, width ])
       svg.append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -57,7 +62,7 @@
 
       // Add Y axis
       var y = d3.scaleLinear()
-        .domain([-20, 40])
+        .domain([-25, 40])
         .range([ height, 0])
         .nice()
       svg.append("g")
@@ -84,8 +89,8 @@
 
       // Color scale: give me a specie name, I return a color
       var color = d3.scaleOrdinal()
-        .domain(["setosa", "versicolor", "virginica" ])
-        .range([ "#F8766D", "#00BA38", "#619CFF"])
+        .domain(["Asia", "Europe", "North America", "Oceania", "South America"])
+        .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00'])
 
       // Add dots
       svg.append('g')
@@ -93,11 +98,13 @@
         .data(data)
         .enter()
         .append("circle")
-          .attr("cx", function (d) { return x(d.Sepal_Length); } )
-          .attr("cy", function (d) { return y(d.Petal_Length); } )
+          .attr("cx", function (d) { return x(d.GDPPerCapita); } )
+          .attr("cy", function (d) { return y(d.WageGap); } )
           .attr("r", 5)
-          .style("fill", function (d) { return color(d.Species) } )
-
+          .style("fill", function (d) { return color(d.Region) } )
+          .on("mouseover", function(d){return tooltip.style("visibility", "visible").text("Country: " + d.Entity + "\n GDP per capita: " + d.GDPPerCapita);})
+          .on("mousemove", function(d){return tooltip.style("top",(d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+          .on("mouseout", function(d){return tooltip.style("visibility", "hidden");});
     })
 
     </script>
