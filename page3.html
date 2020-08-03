@@ -15,8 +15,16 @@
         <a class="internalLink" href="./index.html">1</a>
         <a class="internalLink" href="./page2.html">2</a>
         <a class="disabled">3</a>
+        <p><h4>Gender wage gap vs GDP per capita, 2016</h4></p>
+
         <!-- Create a div where the graph will take place -->
         <div id="my_dataviz"></div>
+        <p>The unadjusted gender wage gap is the difference between
+            average earnings of men and women,as a percentage of average
+            earnings of men. GDP per capita is adjusted to account fordifferences
+            in price levels across countries. Colors represent world regions.
+            Bubble sizes areproportional to the population of the country.</p>
+
     </body>
 
     <script>
@@ -58,7 +66,7 @@
         .range([ 0, width ])
       svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x).tickSize(-height*1.3).ticks(10))
+        .call(d3.axisBottom(x).tickSize(-height*1.3).ticks(5))
         .select(".domain").remove()
 
       // Add Y axis
@@ -108,7 +116,7 @@
           .attr("cy", function (d) { return y(d.WageGap); } )
           .attr("r", function(d) { return Math.sqrt(r(d.Population))})
           .style("fill", function (d) { return color(d.Region) } )
-          .on("mouseover", function(d){return tooltip.style("visibility", "visible").text("Country: " + d.Entity + "\n GDP per capita: " + d.GDPPerCapita);})
+          .on("mouseover", function(d){return tooltip.style("visibility", "visible").text("Country: " + d.Entity + "; GDP: " + d.GDPPerCapita + "; Wage Gap: " + d.WageGap + "; PPL: " + d.Population);})
           .on("mousemove", function(d){return tooltip.style("top",(d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
           .on("mouseout", function(d){return tooltip.style("visibility", "hidden");});
     })

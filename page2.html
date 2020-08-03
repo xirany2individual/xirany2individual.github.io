@@ -15,6 +15,7 @@
         <a class="internalLink" href="./index.html">1</a>
         <a class="disabled">2</a>
         <a class="internalLink" href="./page3.html">3</a>
+        <p><h4>Unadjusted gender gap in median earnings, 1970 to 2016</h4></p>
         <!-- Create a div where the graph will take place -->
         <div id="my_dataviz"></div>
         <p>In most countries the gender pay gap has decreased in the last couple of decades.</p>
@@ -55,7 +56,7 @@
         .range([ 0, width ]);
       svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x).ticks(5));
+        .call(d3.axisBottom(x).ticks(10));
 
       // Add Y axis
       var y = d3.scaleLinear()
