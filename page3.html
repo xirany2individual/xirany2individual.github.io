@@ -40,7 +40,7 @@
     // append the svg object to the body of the page
     var svg = d3.select("#my_dataviz")
       .append("svg")
-        .attr("width", width + margin.left + margin.right)
+        .attr("width", width + margin.left + margin.right +100)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform",
@@ -119,10 +119,26 @@
           .attr("cy", function (d) { return y(d.WageGap); } )
           .attr("r", function(d) { return Math.sqrt(r(d.Population))})
           .style("fill", function (d) { return color(d.Region) } )
-          .on("mouseover", function(d){return tooltip.style("visibility", "visible").text("Country: " + d.Entity + "; Region: " + d.Region + "; GDP: " + d.GDPPerCapita + "; Wage Gap: " + d.WageGap + "; PPL: " + d.Population);})
+          .on("mouseover", function(d){return tooltip.style("visibility", "visible").text("Country: " + d.Entity + "; GDP: " + d.GDPPerCapita + "; Wage Gap: " + d.WageGap + "; PPL: " + d.Population);})
           .on("mousemove", function(d){return tooltip.style("top",(d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
           .on("mouseout", function(d){return tooltip.style("visibility", "hidden");});
+
+
+          // Handmade legend
+          svg.append("circle").attr("cx",500).attr("cy",130).attr("r", 6).style("fill", "#e41a1c")
+          svg.append("circle").attr("cx",500).attr("cy",160).attr("r", 6).style("fill", "#377eb8")
+          svg.append("circle").attr("cx",500).attr("cy",190).attr("r", 6).style("fill", "#4daf4a")
+          svg.append("circle").attr("cx",500).attr("cy",220).attr("r", 6).style("fill", "#984ea3")
+          svg.append("circle").attr("cx",500).attr("cy",250).attr("r", 6).style("fill", "#ff7f00")
+          svg.append("text").attr("x", 520).attr("y", 130).text("Asia").style("font-size", "15px").attr("alignment-baseline","middle")
+          svg.append("text").attr("x", 520).attr("y", 160).text("Europe").style("font-size", "15px").attr("alignment-baseline","middle")
+          svg.append("text").attr("x", 520).attr("y", 190).text("North America").style("font-size", "15px").attr("alignment-baseline","middle")
+          svg.append("text").attr("x", 520).attr("y", 220).text("Oceania").style("font-size", "15px").attr("alignment-baseline","middle")
+          svg.append("text").attr("x", 520).attr("y", 250).text("South America").style("font-size", "15px").attr("alignment-baseline","middle")
+
+
     })
 
     </script>
+
 </html>
