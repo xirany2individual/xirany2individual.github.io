@@ -11,12 +11,20 @@
     </head>
 
     <body>
+        <a class="disabled">Page</a>
         <a class="disabled">1</a>
         <a class="internalLink" href="./page2.html">2</a>
         <a class="internalLink" href="./page3.html">3</a>
 
         <!-- Create a div where the graph will take place -->
         <div id="my_dataviz"></div>
+        <p>In most countries there is a substantial gender pay gap.
+            The estimates shown here correspond to differences between
+            average hourly earnings of men and women (expressed as a
+            percentage of average hourly earnings of men).
+        </br>As we can see: (i) in most countries the gap is positive –
+            women earn less than men; and (ii) there are large differences in
+            the size of this gap across countries.</p>
     </body>
 
     <!-- Code from d3-graph-gallery.com -->
@@ -91,7 +99,7 @@
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.WageGap); })
         .attr("fill", "#69b3a2")
-        .on("mouseover", function(d){return tooltip.style("visibility", "visible").text(d.WageGap);})
+        .on("mouseover", function(d){return tooltip.style("visibility", "visible").text("Wage Gap: " + d.WageGap);})
         .on("mousemove", function(d){return tooltip.style("top",(d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
         .on("mouseout", function(d){return tooltip.style("visibility", "hidden");});
 

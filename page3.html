@@ -11,6 +11,7 @@
     </head>
 
     <body>
+        <a class="disabled">Page</a>
         <a class="internalLink" href="./index.html">1</a>
         <a class="internalLink" href="./page2.html">2</a>
         <a class="disabled">3</a>
@@ -71,7 +72,7 @@
 
         var r = d3.scaleLinear()
           .domain([0, 1400000000])
-          .range([ 0, width/2])
+          .range([ 0, width * 5])
 
 
       // Customization
@@ -105,7 +106,7 @@
         .append("circle")
           .attr("cx", function (d) { return x(d.GDPPerCapita); } )
           .attr("cy", function (d) { return y(d.WageGap); } )
-          .attr("r", function(d) { return r(d.Population)})
+          .attr("r", function(d) { return Math.sqrt(r(d.Population))})
           .style("fill", function (d) { return color(d.Region) } )
           .on("mouseover", function(d){return tooltip.style("visibility", "visible").text("Country: " + d.Entity + "\n GDP per capita: " + d.GDPPerCapita);})
           .on("mousemove", function(d){return tooltip.style("top",(d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
