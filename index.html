@@ -11,11 +11,14 @@
     </head>
 
     <body>
-        <a class="disabled">Page</a>
+        <a id="page" class="disabled">Page</a>
         <a class="disabled">1</a>
         <a class="internalLink" href="./page2.html">2</a>
         <a class="internalLink" href="./page3.html">3</a>
         <p><h4>Unadjusted gender gap in average hourly wages, 2016</h4></p>
+        <script>
+            document.getElementById("page").style.color = "blue";
+        </script>
 
         <!-- Create a div where the graph will take place -->
         <div id="my_dataviz"></div>

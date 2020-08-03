@@ -11,11 +11,15 @@
     </head>
 
     <body>
-        <a class="disabled">Page</a>
+        <a id="page" class="disabled">Page</a>
         <a class="internalLink" href="./index.html">1</a>
         <a class="internalLink" href="./page2.html">2</a>
         <a class="disabled">3</a>
         <p><h4>Gender wage gap vs GDP per capita, 2016</h4></p>
+        <script>
+            document.getElementById("page").style.color = "blue";
+        </script>
+
 
         <!-- Create a div where the graph will take place -->
         <div id="my_dataviz"></div>
@@ -116,7 +120,7 @@
           .attr("cy", function (d) { return y(d.WageGap); } )
           .attr("r", function(d) { return Math.sqrt(r(d.Population))})
           .style("fill", function (d) { return color(d.Region) } )
-          .on("mouseover", function(d){return tooltip.style("visibility", "visible").text("Country: " + d.Entity + "; GDP: " + d.GDPPerCapita + "; Wage Gap: " + d.WageGap + "; PPL: " + d.Population);})
+          .on("mouseover", function(d){return tooltip.style("visibility", "visible").text("Country: " + d.Entity + "; Region: " + d.Region + "; GDP: " + d.GDPPerCapita + "; Wage Gap: " + d.WageGap + "; PPL: " + d.Population);})
           .on("mousemove", function(d){return tooltip.style("top",(d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
           .on("mouseout", function(d){return tooltip.style("visibility", "hidden");});
     })
