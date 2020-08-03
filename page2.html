@@ -35,7 +35,7 @@
               "translate(" + margin.left + "," + margin.top + ")");
 
     //Read the data
-    d3.csv("https://raw.githubusercontent.com/xirany2individual/xirany2individual.github.io/master/data/gender-wage-gap-oecd.csv", function(data) {
+    d3.csv("https://raw.githubusercontent.com/xirany2individual/xirany2individual.github.io/master/data/updated-gender-wage-gap-oecd.csv", function(data) {
         var tooltip = d3.select("body")
               .append("div")
               .style("position", "absolute")
@@ -62,6 +62,20 @@
       svg.append("g")
         .call(d3.axisLeft(y));
 
+        // Add X axis label:
+        svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", width/2 + margin.left)
+            .attr("y", height + margin.top + 20)
+            .text("Year");
+
+        // Y axis label:
+        svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -margin.left + 20)
+            .attr("x", -margin.top - height/2 + 20)
+            .text("Gender wage gap (%)")
       // color palette
       var res = sumstat.map(function(d){ return d.key }) // list of group names
       var color = d3.scaleOrdinal()

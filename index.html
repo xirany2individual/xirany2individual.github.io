@@ -66,6 +66,21 @@
     svg.append("g")
       .call(d3.axisLeft(y));
 
+      // Add X axis label:
+      svg.append("text")
+          .attr("text-anchor", "end")
+          .attr("x", width/2 + margin.left)
+          .attr("y", height + margin.top + 20)
+          .text("Country");
+
+      // Y axis label:
+      svg.append("text")
+          .attr("text-anchor", "end")
+          .attr("transform", "rotate(-90)")
+          .attr("y", -margin.left + 20)
+          .attr("x", -margin.top - height/2 + 20)
+          .text("Gender wage gap (%)")
+
     // Bars
     svg.selectAll("mybar")
       .data(data)
